@@ -4,6 +4,8 @@ A Vue component which could render MathML / LaTeX codes by MathJax.
 
 Based on Vue 3.2 & MathJax 3.
 
+[[中文](./README_zhCN.md)]
+
 ## Demo
 [formular](https://dongivan.github.io) uses this component to render expressions. You can see more details if you visit the link on a wide enough screen (width more than 540px).
 
@@ -46,7 +48,7 @@ Then, use it in your template.
 | content | string | required | The source content of expression. If you want to use a MathMLElement tree as content, you should render the MathMLElement tree as string first(use `ele.outerHTML` for example). |
 | source-format | "mml" \| "mathml" \| "latex" \| "tex" | "tex" | The source format of expression. "mml" and "mathml" both mean using MathMLElement; "latex" and "tex" both mean using LaTex |
 | target-format | "html" \| "chtml" \| "svg" | "chtml" | The target format of expression. "html" and "chtml" both mean that the result will be rendered as html, and "svg" means that the result will be SVG. |
-| display | boolean | false | `display` will be used when MathJax renders the content while `source-format` is set to "tex"(or "latex"). The result would be a inline element if `display == false`, or a block element if `display == true`. When `source-format` is set to "mml"(or "mathml"), this prop will not be used (You should set an attribute named `display` and valued `block` of the root node of the MathMLElement tree if you want MathJax to render it as a block element).
+| display | boolean | false | `display` will be used when MathJax renders the content while `source-format` is set to "tex"(or "latex"). The result would be a inline element if `display == false`, or a block element if `display == true`. When `source-format` is set to "mml"(or "mathml"), this prop will not be used (You should set an attribute named `display` and valued `block` of the root node of the MathMLElement tree if you want MathJax to render it as a block element). |
 
 ### Events emitted
 | Event | Description |
@@ -76,4 +78,4 @@ You should load all MathJax components which used by MathJaxVuewer in the `windo
   },
 }
 ```
-Becareful, the `options.startup.output` is important. Please set it correctly, or the component may throw an error that it cannot find the render function.
+Be careful, the `options.startup.output` is important. Please set it correctly, or the component may throw an error that it cannot find the render function.
