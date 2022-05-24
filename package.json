@@ -1,0 +1,53 @@
+{
+  "name": "@dongivan/mathjax-vuewer",
+  "version": "0.1.1",
+  "private": false,
+  "description": "A Vue component which could render MathML / LaTeX codes by MathJax.",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/mathjax-vuewer.umd.js",
+  "module": "./dist/mathjax-vuewer.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/mathjax-vuewer.es.js",
+      "require": "./dist/mathjax-vuewer.umd.js"
+    }
+  },
+  "types": "./dist/types/index.d.ts",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && vue-tsc --emitDeclarationOnly && rimraf dist/src && move dist/packages dist/types",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "vue": "^3.2.25"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.35",
+    "@vitejs/plugin-vue": "^2.3.3",
+    "typescript": "^4.5.4",
+    "vite": "^2.9.9",
+    "vue-tsc": "^0.34.16"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie 11"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dongivan/mathjax-vuewer.git"
+  },
+  "keywords": [
+    "mathjax",
+    "vue"
+  ],
+  "author": "Ivan Dong",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dongivan/mathjax-vuewer/issues"
+  },
+  "homepage": "https://github.com/dongivan/mathjax-vuewer#readme"
+}
