@@ -31,16 +31,19 @@ const props = defineProps({
 });
 const emit = defineEmits([MATH_JAX_LOADED_EVENT]);
 
+const refSourceFormat = computed(() => props.sourceFormat.toLowerCase())
+const refTargetFormat = computed(() => props.targetFormat.toLowerCase())
+
 const refMathJaxFunctionName = computed(() => {
   const source =
     {
       mml: "mathml",
       latex: "tex",
-    }[props.sourceFormat] || props.sourceFormat;
+    }[refSourceFormat.value] || refSourceFormat.value;
   const target =
     {
       html: "chtml",
-    }[props.targetFormat] || props.targetFormat;
+    }[refTargetFormat.value] || refTargetFormat.value;
   return `${source}2${target}Promise`;
 });
 
