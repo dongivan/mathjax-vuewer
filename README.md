@@ -10,13 +10,13 @@ Based on Vue 3.2 & MathJax 3.
 [formular](https://dongivan.github.io) uses this component to render expressions. You can see more details if you visit the link on a wide enough screen (width more than 540px).
 
 ## Installation
-```
+```bash
 npm install @dongivan/mathjax-vuewer --save
 ```
 
 ## Usage
 Firstly, register the component as a Vue plugin.
-```
+```ts
 import MathJaxVuewer from "@dongivan/mathjax-vuewer"
 import { createApp } from "vue";
 
@@ -29,7 +29,7 @@ app.use(MathJaxVuewer, {
 ```
 
 Then, use it in your template.
-```
+```html
 <template>
   <MathJaxVuewer :content="content" source-format="tex" target-format="html" />
 </template>
@@ -37,14 +37,14 @@ Then, use it in your template.
 
 ### Plugin Options
 | Key | Type | Default | Description |
-|:---:|:----:|:-------:|:-----------:|
+|:---:|:----:|:-------:|:------------|
 | componentName | string | "MathJaxVuewer" | The component name used in template |
 | script | string | undefined | The url of MathJax script. If it is not set, you should load mathjax script by yourself (use \<script> for example). |
 | options | Object | undefined | The options needed by MathJax when it initializes. If it is not set, you should write the config object(`window.MathJax`) to initialize the MathJax. 
 
 ### Component Props
 | Prop | Type | Default | Description |
-|:----:|:----:|:-------:|:-----------:|
+|:----:|:----:|:-------:|:------------|
 | content | string | required | The source content of expression. If you want to use a MathMLElement tree as content, you should render the MathMLElement tree as string first(use `ele.outerHTML` for example). |
 | source-format | "mml" \| "mathml" \| "latex" \| "tex" | "tex" | The source format of expression. "mml" and "mathml" both mean using MathMLElement; "latex" and "tex" both mean using LaTex |
 | target-format | "html" \| "chtml" \| "svg" | "chtml" | The target format of expression. "html" and "chtml" both mean that the result will be rendered as html, and "svg" means that the result will be SVG. |
@@ -52,7 +52,7 @@ Then, use it in your template.
 
 ### Events emitted
 | Event | Description |
-|:-----:|:-----------:|
+|:-----:|:------------|
 | math-jax-loaded | The component will detect whether the MathJax is loaded and emit this event after that. And the component WILL NOT render the `content` before this event emitted. |
 
 
@@ -63,7 +63,7 @@ That means, if you load MathJax manually (which means you leave `script` and `op
 
 ### Multiple components
 You should load all MathJax components which used by MathJaxVuewer in the `window.MathJax` options (or plugin option). For example, you have two MathJaxVuewer components, one is used to render LaTeX to html, and the other renders MathMLElement to SVG, then you should have an options like this:
-```
+```ts
 {
   loader: {
     load: ["input/tex-base", "input/mml", "output/chtml", "output/svg", "[tex]/html"],

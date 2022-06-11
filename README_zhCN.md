@@ -10,13 +10,13 @@
 [formular](https://dongivan.github.io) 在渲染表达式时使用了这个控件。在足够宽的屏幕（宽度不低于540px）上可以获得更多细节。
 
 ## 安装
-```
+```bash
 npm install @dongivan/mathjax-vuewer --save
 ```
 
 ## 使用
 首先在 Vue 中注册为插件。
-```
+```ts
 import MathJaxVuewer from "@dongivan/mathjax-vuewer"
 import { createApp } from "vue";
 
@@ -29,7 +29,7 @@ app.use(MathJaxVuewer, {
 ```
 
 然后在模板中使用。
-```
+```html
 <template>
   <MathJaxVuewer :content="content" source-format="tex" target-format="html" />
 </template>
@@ -37,14 +37,14 @@ app.use(MathJaxVuewer, {
 
 ### 插件选项
 | 键 | 类型 | 默认值 | 说明 |
-|:---:|:----:|:-------:|:-----------:|
+|:---:|:----:|:-------:|:------------|
 | componentName | string | "MathJaxVuewer" | 控件在模板中使用的名称 |
 | script | string | undefined | MathJax 脚本的 URL 地址。如果未设置，你需要自行载入MathJax脚本（例如使用 \<script>）。 |
 | options | Object | undefined | MathJax 初始化时所使用的参数。如果未设置，你需要编写一个配置对象 (`window.MathJax`) 以备 MathJax 进行初始化。
 
 ### 组件 Props
 | Prop | 类型 | 默认值 | 说明 |
-|:----:|:----:|:-------:|:-----------:|
+|:----:|:----:|:-------:|:------------|
 | content | string | 必须 | 表达式的源内容。如果你的源内容的形式是一个 MathMLElement 树，你需要先将其渲染为字符串格式（例如使用 `ele.outerHTML`）。 |
 | source-format | "mml" \| "mathml" \| "latex" \| "tex" | "tex" | 表达式源格式。"mml"与"mathml"均表示格式为 MathMLElement；"latex"与"tex"均表示格式为LaTeX。 |
 | target-format | "html" \| "chtml" \| "svg" | "chtml" | 表达式的目标格式。"html"与"chtml"均表示结果被渲染为html，而"svg"表示结果被渲染为SVG。 |
@@ -52,7 +52,7 @@ app.use(MathJaxVuewer, {
 
 ### 事件
 | 事件名 | 说明 |
-|:-----:|:-----------:|
+|:-----:|:------------|
 | math-jax-loaded | 组件将检测 MathJax 是否载入，并在其载入后发出此事件。组件在发出此事件之间不会执行渲染 `content` 的操作。 |
 
 
@@ -62,7 +62,7 @@ MathJax 一般用来渲染整个页面，它会在初始化时读取 `window.Mat
 
 ### 同页面多个组件
 你需要在 `window.MathJax` （或者插件选项）中将所有 MathJaxVuewer 需要的 MathJax 组件全部载入。例如，你有两个 MathJaxVuewer 组件，一个用来将 LaTeX 渲染为 html，另一个用来将 MathMLElement 渲染为 SVG，那么你需要设置一个类似这样的选项：
-```
+```ts
 {
   loader: {
     load: ["input/tex-base", "input/mml", "output/chtml", "output/svg", "[tex]/html"],
